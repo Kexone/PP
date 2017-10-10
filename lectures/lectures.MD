@@ -17,9 +17,7 @@ Operátor - relace
 Funkce v Haskelu nemá žádný vedlejší efekt, stejný vstup, stejný výstup
 Syntaxe Haskellu podobná Pythonu 
 (*hs) - everything is program  -- commnet
-
 (*lhs) everything is comment,  > program
-
 Haskel má moduly, dají se importovat (module *** where import Ant)
 Prelude (podobný balíček java.lang) obsahuje základní funkce
 schovávání funkcí  import Prelude hiding (max, min)
@@ -57,3 +55,22 @@ nepovinný silně typový systém
     normální forma - už neexistuje žádná beta redukce
     
   
+
+#PP přednáška 4
+
+
+ lambda calculus
+ - používá známé funkce
+ beta- redukce - nahrazení výrazu
+
+
+weak head normal form - zjednodušil by levou funkci
+
+strategie - říká jak nakládat/ předávat parametry
+př f(5+5)   jak naložit s parametrem (5+5)
+haskell předává  hodnotou/referencí/jménem (nějak pojmenuji)
+používá lazy vyhodnocování (nechci vyhodnocovat nic dopředu a ani ne dvakrát) v Jave to moc nejde
+
+Nestriktní  - obsahuje části, které nelze vyhodnotit, ale nejsou potřeba pro hlavní část výsledku - tak je prostě přeskočí
+Neplatí pro haskell: pokud nelze vyraz vyhodnotit = pak celý program nelze vyhodnotit 
+Nekonečná struktura 1.. 
