@@ -2,42 +2,53 @@ module FIlterWords where
 
 import Prelude
 import Data.List
---import Data.List.Split
 
 type Index = [(String, [Int])]
-type PreparedText = [(Int, [String])]
+type LocatedWords = [(Int, [String])]
 txt = "In computer science, functional programming is a programming\nparadigm that treats computation as the evaluation of mathematical\nfunctions and avoids state and mutable data. It emphasizes the\napplication of functions in contrast tothe imperative programming style,\nwhich emphasizes changes in state"
 
 
-minWordLength = 4
+sortWords :: (Ord a) => [a] -> [a]
+sortWords = map head . group . sort
 
-remove :: Eq a => a -> [[a]] -> [[a]]
-remove y xs = map (filter(/=y)) xs
+getWords :: String -> Int -> [String]
+getWords str len = sortWords [x | x <-  (clearCh ',' (clearCh '.'(words str))), (length x) >= len]
 
-prepare :: String -> PreparedText
-prepare str = zip [1..(length lineList)] lineList where
-    lineList = map words (remove ',' (remove '.' (lines str)))
-
-unique :: (Ord a) => [a] -> [a]
-unique = map head . group . sort
-
-getWords :: String -> [String]
-getWords str = unique [x | x <- (remove ',' (remove '.' (words str))), (length x) >= minWordLength]
-
-toString :: Index -> String
-toString ((word, lines):xs) = (word ++ " => " ++ (show lines) ++ "\n") ++ (toString xs)
-toString [] = ""
-
-contains :: Eq a => a -> [a] -> Bool
-contains elem (x:xs) = if elem == x then True else contains elem xs
-contains elem [] = False
-
-searchWord :: String -> PreparedText -> [Int]
+searchWord :: String -> LocatedWords -> [Int]
 searchWord word text = [x | (x, y) <- text, contains word y]
 
-buildIndex :: String -> PreparedText -> Index
-buildIndex text prepared = [(word, l word) | word <- getWords text] where
-    l word = searchWord word prepared
+printText :: Index -> String
+printText [] = ""
+printText ((word, numb):xs) = ( "  " ++ word ++ " " ++   (show numb) ++ "\n") ++ (printText xs)
 
-showIndex :: IO()
-showIndex = putStr ("\nIndex:\n\n" ++ toString (buildIndex txt (prepare txt)) ++ "\n\nOriginal text:\n\n" ++ txt ++ "\n")
+contains :: Eq a => a -> [a] -> Bool
+contains elem [] = False
+contains elem (x:xs) | elem == x = True 
+                     | otherwise =  contains elem xs
+
+clearCh :: Eq a => a -> [[a]] -> [[a]]
+clearCh y xs = map (filter(/=y)) xs
+
+prepare :: String -> LocatedWords
+prepare str = zip [1..(length linesList)] linesList where
+    linesList = map words (clearCh ',' (clearCh '.' (lines str)))
+
+getIndex :: String -> Int -> Index
+getIndex text len = [(word, searchWord word preparedText) | word <- getWords text len]  where
+	preparedText = prepare text
+
+--print anything
+printThis :: String -> IO()
+printThis = putStr
+
+--print original text
+pOT :: IO()
+pOT = putStr ("\n\nOriginal text:\n\n" ++ txt ++ "\n\n" )
+
+--print words with index
+pI :: Int -> IO()
+pI len= putStr ("\n\n" ++ printText (getIndex txt len) ++ "\n\n" )
+
+--showIndex = putStr ("\nIndex:\n\n" ++ printText (buildIndex txt (prepare txt)) ++ "\n\nOriginal text:\n\n" ++ txt ++ "\n")
+
+--putStr (printText (buildIndex txt (prepare txt)))
