@@ -74,3 +74,14 @@ používá lazy vyhodnocování (nechci vyhodnocovat nic dopředu a ani ne dvakr
 Nestriktní  - obsahuje části, které nelze vyhodnotit, ale nejsou potřeba pro hlavní část výsledku - tak je prostě přeskočí
 Neplatí pro haskell: pokud nelze vyraz vyhodnotit = pak celý program nelze vyhodnotit 
 Nekonečná struktura 1.. 
+
+
+#PP přednáška 5
+#odvozené třídy
+typ Ordering - 3 hodnoty větší, menší, rovno
+max, min  :: a -> a-> a
+compare  a -> a > Ordering
+show - udělá string
+
+
+haskell napříště zásobník

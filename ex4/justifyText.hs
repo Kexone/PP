@@ -36,3 +36,6 @@ realLength x = length (concat x)
 
 procede x = let x' =  reverse (prepare [] 0 (words (x)))
             in concat [ (format y (length y) (lineLength - realLength y)) ++ "\n" |  y <- x']
+
+
+-- Unikátní slova  delší alespoň 4 znaky, setřídit je a napsat na jakých řádcích se nachází
