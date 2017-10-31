@@ -85,3 +85,16 @@ show - udělá string
 
 
 haskell napříště zásobník
+
+
+#PP přednáška 6 
+##programování s akcemi
+Haskell implementuje Monády
+Monáda dá se použít i v oblasti matematiky
+v hasklu je specifický typ např IO
+Monáda je specifická typová třída
+Monáda st array 
+všechny akce souvisí s koncepcí 
+např putChar důležité je vedlejší efekt (co zobrazí v konzoli) a je jedno jaký je výstup, proto se používá Monáda
+fce return udělá z fce monádu  (např fce do)
+výsledke main je IO efekt
