@@ -24,14 +24,15 @@ halfAdder (a, b) = (eval(AND (Value a) (Value b)), eval(XOR (Value a) (Value b))
 -- Jednobitová sčítačka úplná
 fullAdder:: (Bool, Bool) -> Bool ->(Bool, Bool)
 fullAdder (a, b) c =   ( valC , valS ) where
-                        valS = eval(XOR (Value (eval(XOR (Value a) (Value b)))) (Value c))
-                        valC = eval( OR (Value (eval(OR (Value (eval(AND (Value a) (Value b)))) ((Value (eval(AND (Value b) (Value c)))))) )) ((Value (eval(AND (Value b) (Value c))))))
+                        valS = eval( XOR (Value (eval(XOR (Value a) (Value b)))) (Value c))
+                        valC = eval( OR(Value (eval(AND (Value(eval(XOR (Value a) (Value b)))) (Value c))) ) (Value (eval( AND (Value a) (Value b)))))
+                        --valC = eval( OR (Value (eval(OR (Value (eval(AND (Value a) (Value b)))) ((Value (eval(AND (Value b) (Value c)))))) )) ((Value (eval(AND (Value b) (Value c))))))
 
 rippleCarryAdder :: [(Bool, Bool)] -> Bool -> [Bool]
-rippleCarryAdder [] = []
-rippleCarryAdder ((a, b): xs) c  = [valC] ++ rippleCarryAdder xs  where
+rippleCarryAdder [] a = [a] 
+rippleCarryAdder ((a, b): xs) c  = reverse [valS] ++ rippleCarryAdder xs valC  where
                                                            valC = fst (fullAdder (a,b) c)
-                                                           valS = snd (fullAdder (a,b, valC))
+                                                           valS = snd (fullAdder (a,b) c)
 
 
 
@@ -55,8 +56,11 @@ showIt (AND x y)  = "(" ++ showIt x ++ ")==(" ++ showIt y ++ ") && (" ++ showIt 
 showIt (OR x y)   = "(" ++ showIt x ++ ") " ++ "== (" ++showIt y ++ ")" 
 
 
-showTo :: (Bool, Bool) -> IO ()
-showTo (a, b) =  putStr ("Vysledek: " ++ show (convB2I b) ++ " Preteceni:" ++ show (convB2I b)  ++ "\n")
+showTo :: [Bool] -> String
+showTo [] = []
+--showTo (x:[]) = "\n Carry bit: " ++ show (convB2I x)
+--showTo x = show (convB2I x)
+showTo  (x:xs) =  "" ++ show (convB2I x) ++  showTo xs
 
 
 convB2I :: Bool -> Int
@@ -64,6 +68,8 @@ convB2I True = 1
 convB2I False = 0
 
 main = do
-rippleCarryAdder [(False, False), (False,True)]
+(showTo (rippleCarryAdder ( [ (False,True), (True, True),(True,False)]) False))
+
+--rippleCarryAdder [(True, True), (False,True)] False
 
 --rippleCarryAdder [(False, False, False), (False, False, True), (False, True, False), (False, True, True), (True, False, False), (True, False, True),(True,True,False), (True, True, True)]
