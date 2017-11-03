@@ -60,15 +60,45 @@ showTo :: [Bool] -> String
 showTo [] = []
 --showTo (x:[]) = "\n Carry bit: " ++ show (convB2I x)
 --showTo x = show (convB2I x)
-showTo  (x:xs) =  "" ++ show (convB2I x) ++  showTo xs
+showTo  (x:xs) =   show (convB2I x) ++  showTo xs
 
 
 convB2I :: Bool -> Int
 convB2I True = 1
 convB2I False = 0
 
+--repeat some char N times
+rep :: Int -> String -> String
+rep 0 x = []
+rep n x= x ++ rep (n-1) x
+
+printHeader :: String -> String
+printHeader x = rep 15 "_" ++ "\n|" ++ rep 5 " " ++ x ++ rep 5 " " ++ "|\n" ++ rep 15 "-" ++ "\n"
+
+
+
 main = do
-(showTo (rippleCarryAdder ( [ (False,True), (True, True),(True,False)]) False))
+----------------------------
+----------------------------
+-- Logic Gates Truth Tables
+----------------------------
+----------------------------
+--AND 
+----------------------------
+ putStr (printHeader "AND")
+ putStr (printExamples )
+
+--OR
+--NOT 
+--NAND
+--NOR 
+--XOR 
+--XNOR
+--(showTo (rippleCarryAdder ( [ (False,True), (True, True),(True,False)]) False))
+
+--GOOD ONE
+--( showTo (rippleCarryAdder ( [ (True,True), (True, False), (True, False)] ) False))
+
 
 --rippleCarryAdder [(True, True), (False,True)] False
 
