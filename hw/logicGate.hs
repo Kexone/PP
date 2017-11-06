@@ -2,7 +2,6 @@ module LogicCircuits where
 
 import Prelude
 import Data.List
-import Data.Char(toUpper)
 
 data LogicCircuit = Value Int
         | AND LogicCircuit LogicCircuit
@@ -29,7 +28,7 @@ fullAdder (a, b) c =   ( valC , valS ) where
 
 rippleCarryAdder :: [(Int, Int)] -> Int -> [Int]
 rippleCarryAdder [] a = [a] 
-rippleCarryAdder ((a, b): xs) c  = reverse [valS] ++ rippleCarryAdder xs valC  where
+rippleCarryAdder ((a, b): xs) c  = [valS] ++ rippleCarryAdder xs valC  where
                                                            valC = fst (fullAdder (a,b) c)
                                                            valS = snd (fullAdder (a,b) c)
 
@@ -74,6 +73,15 @@ lineLength []     = 0
 rep :: Int -> String -> String
 rep 0 x = []
 rep n x= x ++ rep (n-1) x
+
+printNumerator :: [(Int, Int)] -> String
+printNumerator [] = "\n"
+printNumerator ((a,_):xs) = show a ++ printNumerator xs
+
+printDenominator :: [(Int, Int)] -> String
+printDenominator [] = "\n"
+printDenominator ((_,a):xs) = show a ++ printDenominator xs   
+
 
 --print header for gates
 printHeaderG x = rep 15 "_" ++ "\n|" ++ rep 5 " " ++ x ++ rep (8 - lineLength x) " " ++ "|\n" ++ rep 15 "-" ++ "\n" ++ "|"  ++ rep 2 " " ++ "A" ++ rep 2 " " ++ "B" ++ rep 2 " " ++ "||" ++ rep 1 " " ++ "S" ++ rep 1 " " ++ "|\n"
@@ -145,10 +153,48 @@ main = do
  putStr (printMessage rep 5 "\t" ++ rep 20 "_" ++ "\n\n")
  putStr (printMessage rep 5 "\t" ++ " FOUR BIT \n" ++ rep 5 "\t" ++ " RIPPLE CARRY ADDER \n")
  putStr (printMessage rep 5 "\t" ++ rep 20 "_" ++ "\n\n")
- putStr (printMessage " 011\n 110 C=0\n" ++ rep 6 "-" ++ "\n")
- putStr ( showTo (rippleCarryAdder [(0,1), (1, 1), (1, 0)] 0 ) )
-
+ let fourBites = [(1, 0), (0, 0), (0, 1), (1,0)]
+ putStr (" " ++ printNumerator ( fourBites))
+ putStr (" " ++ printDenominator ( fourBites))
+ putStr (printMessage rep 5 "-" ++ "\n")
+ putStr (show( last (rippleCarryAdder fourBites 0)) ++ showTo (take (length fourBites) (rippleCarryAdder fourBites 0) ) )
  putStr (printMessage rep 3 "\n")
+
+
+ let fourBites = [(1, 0), (0, 0), (0, 0), (0,1)]
+ putStr (" " ++ printNumerator ( fourBites))
+ putStr (" " ++ printDenominator ( fourBites))
+ putStr (printMessage rep 5 "-" ++ "\n")
+ putStr ( showTo  (reverse(rippleCarryAdder ( fourBites) 0) ) )
+ putStr (printMessage rep 3 "\n")
+
+
+ let fiv = [(0,0), (1,1), (0, 0 ), (1, 1)]
+ putStr (" " ++ printNumerator (fiv))
+ putStr (" " ++ printDenominator fiv)
+ putStr (printMessage rep 5 "-" ++ "\n")
+ putStr ( showTo  ((rippleCarryAdder (reverse fiv) 0) ) )
+ --putStr (show( last (rippleCarryAdder (reverse fiv) 0)) ++ showTo (take (length fiv   ) (rippleCarryAdder (reverse fiv) 0) ) )
+ putStr (printMessage rep 3 "\n")
+
+ let fiv = [(0,0), (1,1), (1, 1 ), (1, 1)]
+ putStr (" " ++ printNumerator (fiv))
+ putStr (" " ++ printDenominator fiv)
+ putStr (printMessage rep 5 "-" ++ "\n")
+ putStr ( showTo  ((rippleCarryAdder (reverse fiv) 0) ) )
+ --putStr (show( last (rippleCarryAdder (reverse fiv) 0)) ++ showTo (take (length fiv   ) (rippleCarryAdder (reverse fiv) 0) ) )
+ putStr (printMessage rep 3 "\n")
+
+
+ let fiv = [(1, 1), (1,1), (1, 1 ), (1, 1)]
+ putStr (" " ++ printNumerator (fiv))
+ putStr (" " ++ printDenominator fiv)
+ putStr (printMessage rep 5 "-" ++ "\n")
+ putStr ( showTo  (reverse(rippleCarryAdder (reverse fiv) 0) ) )
+ --putStr (show( last (rippleCarryAdder (reverse fiv) 0)) ++ showTo (take (length fiv   ) (rippleCarryAdder (reverse fiv) 0) ) )
+ putStr (printMessage rep 3 "\n")
+
+
 --GOOD ONE
 --( showTo (rippleCarryAdder ( [ (1,1), (1, 0), (1, 0)] ) 0))
 
