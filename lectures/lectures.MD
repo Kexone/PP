@@ -98,3 +98,7 @@ všechny akce souvisí s koncepcí
 např putChar důležité je vedlejší efekt (co zobrazí v konzoli) a je jedno jaký je výstup, proto se používá Monáda
 fce return udělá z fce monádu  (např fce do)
 výsledke main je IO efekt
+
+
+#přednáska 7
+Monáda St

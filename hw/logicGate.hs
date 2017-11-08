@@ -174,7 +174,6 @@ main = do
  putStr (" " ++ printDenominator fiv)
  putStr (printMessage rep 5 "-" ++ "\n")
  putStr ( showTo  ((rippleCarryAdder (reverse fiv) 0) ) )
- --putStr (show( last (rippleCarryAdder (reverse fiv) 0)) ++ showTo (take (length fiv   ) (rippleCarryAdder (reverse fiv) 0) ) )
  putStr (printMessage rep 3 "\n")
 
  let fiv = [(0,0), (1,1), (1, 1 ), (1, 1)]
@@ -182,7 +181,6 @@ main = do
  putStr (" " ++ printDenominator fiv)
  putStr (printMessage rep 5 "-" ++ "\n")
  putStr ( showTo  ((rippleCarryAdder (reverse fiv) 0) ) )
- --putStr (show( last (rippleCarryAdder (reverse fiv) 0)) ++ showTo (take (length fiv   ) (rippleCarryAdder (reverse fiv) 0) ) )
  putStr (printMessage rep 3 "\n")
 
 
@@ -191,7 +189,6 @@ main = do
  putStr (" " ++ printDenominator fiv)
  putStr (printMessage rep 5 "-" ++ "\n")
  putStr ( showTo  (reverse(rippleCarryAdder (reverse fiv) 0) ) )
- --putStr (show( last (rippleCarryAdder (reverse fiv) 0)) ++ showTo (take (length fiv   ) (rippleCarryAdder (reverse fiv) 0) ) )
  putStr (printMessage rep 3 "\n")
 
 
