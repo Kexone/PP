@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1.5cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{float}
+%\setlength{\arrayrulewidth}{1mm}
+%\setlength{\tabcolsep}{18pt}
+%\renewcommand{\arraystretch}{1}
+
+\begin{document}
+\pagestyle{empty}
+\begin{center}
+\section*{\huge{Test result}}
+\section*{Multiplication matrices}
+\end{center}
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c|c|  }
+\hline 
+\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{4}{c|}{ Time} \\  \cline{3-6}
+
+                            &                       &  Solo CPU& OMP outer for & OMP mid for & OMP inner for \\ 
+\hline 
+\multirow{6}{*}{Vector}     & row\_col\_pos & 38 sec & 21 sec & 18 sec & 7 sec \\
+                            & row\_pos\_col & 9 sec & 4 sec & 5 sec & 8 sec \\
+                            & col\_row\_pos & 38 sec & 21 sec & 22 sec & 23 sec \\  
+                            & col\_pos\_row & 83 sec & 43 sec & 43 sec & 44 sec \\
+                            & pos\_row\_col & 10 sec & 4 sec & 5 sec & 8 sec \\
+                            & pos\_col\_row & 82 sec & 43 sec & 43 sec & 49 sec \\
+\hline
+\multirow{6}{*}{1D Array}   & row\_col\_pos & 32 sec & 18 sec & 18 sec & 7 sec \\
+                            & row\_pos\_col & 3 sec & 1 sec & 2 sec & 5 sec \\
+                            & col\_row\_pos & 33 sec & 18 sec & 19 sec & 8 sec \\  
+                            & col\_pos\_col & 76 sec & 41 sec & 41 sec & 45 sec \\
+                            & pos\_row\_col & 3 sec & 2 sec & 2 sec & 3 sec \\
+                            & pos\_col\_row & 77 sec & 42 sec & 42 sec & 45 sec \\
+\hline
+\multirow{6}{*}{2D Array}   & row\_col\_pos & 37 sec & 21 sec & 21 sec & 15 sec \\
+                            & row\_pos\_col & 5sec & 2 sec & 3 sec & 5 sec \\
+                            & col\_row\_pos & 39 sec & 21 sec & 22 sec & 16 sec \\  
+                            & col\_pos\_row & 80 sec & 43 sec & 42 sec & 43  sec \\
+                            & pos\_row\_col & 5 sec & 3 sec & 3 sec & 6 sec \\
+                            & pos\_col\_row & 80 sec & 43 sec & 43 sec & 44 sec \\
+\hline
+\end{tabular}
+\caption{CPU i5-4200U DC 1.6 GHz - 2.G GHz 4 Threads $|$ RAM DDR3 8GB 1600 MHz }
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c|c|  }
+\hline
+\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{4}{c|}{ Time} \\ \cline{3-6}
+                            &                       &  Solo CPU& OMP outer for & OMP mid for & OMP inner for \\
+\hline
+\multirow{6}{*}{Vector}     & row\_col\_pos & 12 sec & 3 sec & 5 sec & 12 sec \\
+                            & row\_pos\_col & 5 sec &  1 sec & 3 sec & 7 sec \\
+                            & col\_row\_pos & 14 sec & 4 sec & 5 sec & 13 sec \\  
+                            & col\_pos\_row & 29 sec & 7 sec & 9 sec & 13 sec \\
+                            & pos\_row\_col & 5 sec & 1 sec & 2 sec & 7 sec \\
+                            & pos\_col\_row & 27 sec & 7 sec & 8 sec & 12 sec \\
+\hline
+\multirow{6}{*}{1D Array}   & row\_col\_pos & 4 sec & 2 sec & 2 sec & 6 sec \\
+                            & row\_pos\_col & 1 sec & 0 sec & 1 sec & 5 sec \\
+                            & col\_row\_pos & 6 sec & 2 sec & 3 sec & 7 sec \\  
+                            & col\_pos\_row & 26 sec & 7 sec & 10 sec & 11 sec \\
+                            & pos\_row\_col & 1 sec & 0 sec & 0 sec & 5 sec \\
+                            & pos\_col\_row & 26 sec & 7 sec & 8 sec & 11 sec \\
+\hline
+\multirow{6}{*}{2D Array}   & row\_col\_pos & 9 sec & 3 sec & 3 sec & 9 sec \\
+                            & row\_pos\_col & 3 sec & 0 sec & 2 sec & 6 sec \\
+                            & col\_row\_pos & 12 sec & 3 sec & 4 sec & 10 sec \\  
+                            & col\_pos\_row & 27 sec & 7 sec & 9 sec & 12 sec \\
+                            & pos\_row\_col & 3 sec & 1 sec & 1 sec & 6 sec \\
+                            & pos\_col\_row & 26 sec & 7 sec & 8 sec & 12 sec \\
+\hline
+\end{tabular}
+\caption{CPU i7-6700K QC 4.0 GHz 8 Threads $|$ RAM DDR4 32GB 2900 MHz }
+\end{table}
+\end{document}
