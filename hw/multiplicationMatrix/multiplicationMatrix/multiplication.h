@@ -19,8 +19,6 @@ private:
 	void printMat1DArrayT(int *mat);
 	void printMatVector(std::vector < std::vector < int > > &mat);
 
-	void fillVectors(std::vector < std::vector < int > > &matrix);
-
 	void calcSolo2DArray(int * mat1[N], int * mat2[N], int * mat3[N]);
 	void calcOmpOut2DArray(int * mat1[N], int * mat2[N], int * mat3[N]);
 	void calcOmpMid2DArray(int * mat1[N], int * mat2[N], int * mat3[N]);

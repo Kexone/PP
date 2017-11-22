@@ -15,6 +15,8 @@ int Multiplication::getN()
 
 Multiplication::Multiplication() { }
 
+#pragma region generators
+
 void Multiplication::generateMatrix2DArray(int *mat[N])
 {
 	for (int i = 0; i < N; i++)
@@ -45,14 +47,25 @@ void Multiplication::generateMatrix1DArray(int* mat)
 	}
 }
 
+#pragma endregion
+
+#pragma region main calc public parts
+
 void Multiplication::calculateVectors()
 {
 	std::vector < std::vector < int > > matrix1;
 	std::vector < std::vector < int > > matrix2;
 	std::vector < std::vector < int > > matrix3;
-	fillVectors(matrix1);
-	fillVectors(matrix2);
-	fillVectors(matrix3);
+	std::vector<int> tmp(N);
+
+	std::fill(tmp.begin(), tmp.end(), 0);
+	for (int i = 0; i < N; i++) {
+		matrix1.push_back(tmp);
+		matrix2.push_back(tmp);
+		matrix3.push_back(tmp);
+	}
+	tmp.clear();
+
 
 	generateMatrixVector(matrix1);
 	generateMatrixVector(matrix2);
@@ -171,6 +184,10 @@ void Multiplication::calculate2DArray()
 	delete[] matrix3;
 }
 
+#pragma endregion
+
+#pragma region print section
+
 void Multiplication::printMat2DArray(int mat[N][N])
 {
 	for (int i = 0; i < N; i++)	{
@@ -216,15 +233,9 @@ void Multiplication::printMatVector(std::vector<std::vector<int>>& mat)
 	}
 }
 
-void Multiplication::fillVectors(std::vector < std::vector < int > > &matrix)
-{
-	std::vector<int> tmp(N);
-	std::fill(tmp.begin(), tmp.end(), 0);
-	for (int i = 0; i < N; i++) {
-		matrix.push_back(tmp);
-	}
-	tmp.clear();
-}
+#pragma endregion 
+
+#pragma region calc with vectors
 
 void Multiplication::calcSoloVector(std::vector<std::vector<int>>& mat1, std::vector<std::vector<int>>& mat2, std::vector<std::vector<int>>& mat3)
 {
@@ -274,6 +285,10 @@ void Multiplication::calcOmpInVector(std::vector<std::vector<int>>& mat1, std::v
 	}
 }
 
+#pragma endregion 
+
+#pragma region calc with 2d arrays
+
 void Multiplication::calcSolo2DArray(int * mat1[N], int * mat2[N], int * mat3[N])
 {
 	for (int i = 0; i < N; i++) {
@@ -322,6 +337,10 @@ void Multiplication::calcOmpIn2DArray(int * mat1[N], int * mat2[N], int * mat3[N
 	}
 }
 
+#pragma endregion
+
+#pragma region calc with 1d arrays
+
 void Multiplication::calcSolo1DArray(int * mat1, int * mat2, int * mat3)
 {
 	for (int i = 0; i < N; i++) {
@@ -369,3 +388,5 @@ void Multiplication::calcOmpIn1DArray(int * mat1, int * mat2, int * mat3)
 		}
 	}
 }
+
+#pragma endregion
