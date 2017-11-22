@@ -1,8 +1,8 @@
 #include "multiplication.h"
 
 
-#define nFrom 1
-#define nTo 2
+#define nFrom 0
+#define nTo 50
 
 std::random_device rd;
 std::mt19937 gen(rd()); 
