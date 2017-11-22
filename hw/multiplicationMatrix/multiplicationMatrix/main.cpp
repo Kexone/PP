@@ -2,10 +2,13 @@
 
 #include <iostream>
 #include "multiplication.h"
+#include <fstream>
 
-	Multiplication mp;
+Multiplication mp;
 int main()
 {
+
+
 	int n = mp.getN();
 	std::cout << "Size of matrices: " << n << " x " << n << std::endl << std::endl;
 	std::cout << "\n\nCalc multiplication matrices in 1D arrays" << std::endl << std::endl;
