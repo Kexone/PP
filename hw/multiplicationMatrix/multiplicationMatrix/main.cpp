@@ -7,12 +7,12 @@
 int main()
 {
 	int n = mp.getN();
-	std::cout << "Size of matrix: " << n << " x " << n << std::endl << std::endl;
-	std::cout << "Calc multiplicaton matrixs in 1D arrays" << std::endl << std::endl;
+	std::cout << "Size of matrices: " << n << " x " << n << std::endl << std::endl;
+	std::cout << "Calc multiplicaton matrices in 1D arrays" << std::endl << std::endl;
 	mp.calculate1DArray();
-	std::cout << "Calc multiplicaton matrixs in 2D arrays" << std::endl << std::endl;
+	std::cout << "Calc multiplicaton matrices n 2D arrays" << std::endl << std::endl;
 	mp.calculate2DArray();
-	std::cout << "\n\nCalc multiplicaton matrixs in vectors" << std::endl << std::endl;
+	std::cout << "\n\nCalc multiplicaton matrices in vectors" << std::endl << std::endl;
 	mp.calculateVectors();
 	getchar();
 	return 0;
