@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[11pt,landscape]{article}
 \usepackage[a4paper,margin=1.5cm]{geometry}
 \usepackage[table]{xcolor}
 \usepackage[utf8]{inputenc}
@@ -15,67 +15,8 @@
 \section*{\huge{Test result}}
 \section*{Multiplication matrices}
 \end{center}
-\begin{table}[H]
-\centering
-\begin{tabular}{ |c|c|c|c|c|c|  }
-\hline 
-\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{4}{c|}{ Time} \\  \cline{3-6}
 
-                            &                       &  Solo CPU& OMP outer for & OMP mid for & OMP inner for \\ 
-\hline 
-\multirow{6}{*}{1D Array}   & row\_col\_pos & 4.778 &  3.451 & 4.147 & 6.525 \\
-                            & row\_pos\_col & 1.407 &  0.595 & 0.943 & 4.335 \\
-                            & col\_row\_pos & 3.934 &  3.455 & 3.925 & 4.473 \\  
-                            & col\_pos\_row & 22.754 & 12.486 &  14.825 & 9.771 \\
-                            & pos\_row\_col & 1.173 &  0.689 & 0.871 & 3.481 \\
-                            & pos\_col\_row & 23.211 & 12.156 & 14.132 & 10.403 \\
-\hline
-\multirow{6}{*}{2D Array}   & row\_col\_pos & 7.834 &  5.865 &  6.771 &  8.393  \\
-                            & row\_pos\_col & 2.26 &   1.138 &  1.673 &  3.901  \\
-                            & col\_row\_pos & 8.392 &  5.882 &  6.354 &  7.218  \\  
-                            & col\_pos\_col & 24.931 & 13.294 & 14.989 & 12.566 \\
-                            & pos\_row\_col & 2.217 &  1.192 &  1.436 &  3.625  \\
-                            & pos\_col\_row & 24.359 & 13.258 & 14.563 & 11.685 \\
-\hline
-\multirow{6}{*}{2D Array}   & row\_col\_pos & 10.472 & 6.287 & 7.465 & 8.024  \\ 
-                            & row\_pos\_col & 3.487 & 1.468 & 2.999 & 4.5  \\ 
-                            & col\_row\_pos & 7.283 & 5.931 & 6.281 & 8.403  \\   
-                            & col\_pos\_row & 24.355 & 12.555 & 13.768 & 13.975  \\ 
-                            & pos\_row\_col & 3.364 & 1.489 & 1.664 & 4.497  \\ 
-                            & pos\_col\_row & 24.25 & 12.71 & 13.019 & 18.105  \\ 
-\hline
-\end{tabular}
-\caption{CPU i5-4200U DC 1.6 GHz - 2.G GHz 4 Threads $|$ RAM DDR3 8GB 1600 MHz }
-\end{table}
-\begin{table}[H]
-\centering
-\begin{tabular}{ |c|c|c|c|c|c|  }
-\hline
-\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{4}{c|}{ Time} \\ \cline{3-6}
-                            &                       &  Solo CPU& OMP outer for & OMP mid for & OMP inner for \\
-\hline
-\multirow{6}{*}{Vector}     & row\_col\_pos & 12 sec & 3 sec & 5 sec & 12 sec \\
-                            & row\_pos\_col & 5 sec &  1 sec & 3 sec & 7 sec \\
-                            & col\_row\_pos & 14 sec & 4 sec & 5 sec & 13 sec \\  
-                            & col\_pos\_row & 29 sec & 7 sec & 9 sec & 13 sec \\
-                            & pos\_row\_col & 5 sec & 1 sec & 2 sec & 7 sec \\
-                            & pos\_col\_row & 27 sec & 7 sec & 8 sec & 12 sec \\
-\hline
-\multirow{6}{*}{1D Array}   & row\_col\_pos & 4 sec & 2 sec & 2 sec & 6 sec \\
-                            & row\_pos\_col & 1 sec & 0 sec & 1 sec & 5 sec \\
-                            & col\_row\_pos & 6 sec & 2 sec & 3 sec & 7 sec \\  
-                            & col\_pos\_row & 26 sec & 7 sec & 10 sec & 11 sec \\
-                            & pos\_row\_col & 1 sec & 0 sec & 0 sec & 5 sec \\
-                            & pos\_col\_row & 26 sec & 7 sec & 8 sec & 11 sec \\
-\hline
-\multirow{6}{*}{2D Array}   & row\_col\_pos & 9 sec & 3 sec & 3 sec & 9 sec \\
-                            & row\_pos\_col & 3 sec & 0 sec & 2 sec & 6 sec \\
-                            & col\_row\_pos & 12 sec & 3 sec & 4 sec & 10 sec \\  
-                            & col\_pos\_row & 27 sec & 7 sec & 9 sec & 12 sec \\
-                            & pos\_row\_col & 3 sec & 1 sec & 1 sec & 6 sec \\
-                            & pos\_col\_row & 26 sec & 7 sec & 8 sec & 12 sec \\
-\hline
-\end{tabular}
-\caption{CPU i7-6700K QC 4.0 GHz 8 Threads $|$ RAM DDR4 32GB 2900 MHz }
-\end{table}
+\include{includes/table1ntb}
+
+
 \end{document}
