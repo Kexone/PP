@@ -50,6 +50,35 @@ void Multiplication::generateMatrix1DArray(int* mat)
 	}
 }
 
+void Multiplication::clearMatrix(int* mat[500])
+{
+	for (int row = 0; row < N; row++)
+	{
+		for (int col = 0; col < N; col++)
+		{
+			mat[row][col] = 0;
+		}
+	}
+}
+
+void Multiplication::clearMatrix(std::vector<std::vector<int>>& mat)
+{
+	for (int row = 0; row < N; row++)
+	{
+		for (int col = 0; col < N; col++)
+		{
+			mat[row][col] = 0;
+		}
+	}
+}
+
+void Multiplication::clearMatrix(int* mat)
+{
+	for (int row = 0; row < N * N; row++)
+	{
+		mat[row] = 0;
+	}
+}
 #pragma endregion
 
 #pragma region main calc public parts
@@ -82,144 +111,172 @@ void Multiplication::calculateVectors()
 	timer = clock() - timer;
 	std::cout << "Solo cpu RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	printMat(matrix3);
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSoloVectorRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	printMat(matrix3);
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSoloVectorCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
+	printMat(matrix3);
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSoloVectorCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
+	printMat(matrix3);
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSoloVectorVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSoloVectorVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOutVectorRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOutVectorRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOutVectorCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOutVectorCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOutVectorVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOutVectorVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMidVectorRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMidVectorRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMidVectorCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMidVectorCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMidVectorVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMidVectorVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpInVectorRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpInVectorRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpInVectorCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpInVectorCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpInVectorVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpInVectorVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	fs.close();
 	matrix1.clear();
@@ -230,7 +287,7 @@ void Multiplication::calculateVectors()
 void Multiplication::calculate1DArray()
 {
 	std::ofstream fs("results1DArray.csv");
-	fs  << "rcp;" << "rpc;" << "crp;" << "cpr;" << "prc;" << "pcr;" << std::endl;
+	fs << "rcp;" << "rpc;" << "crp;" << "cpr;" << "prc;" << "pcr;" << std::endl;
 
 	int* matrix1 = new int[N * N];
 	int* matrix2 = new int[N * N];
@@ -247,144 +304,168 @@ void Multiplication::calculate1DArray()
 	timer = clock() - timer;
 	std::cout << "Solo cpu RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo1DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo1DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo1DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo1DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo1DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut1DArrayRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut1DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut1DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut1DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut1DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut1DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid1DArrayRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid1DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid1DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid1DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid1DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid1DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn1DArrayRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn1DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn1DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn1DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn1DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn1DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	fs.close();
 
@@ -396,7 +477,7 @@ void Multiplication::calculate1DArray()
 void Multiplication::calculate2DArray()
 {
 	std::ofstream fs("results2DArray.csv");
-	fs  << "rcp;" << "rpc;" << "crp;" << "cpr;" << "prc;" << "pcr;" << std::endl;
+	fs << "rcp;" << "rpc;" << "crp;" << "cpr;" << "prc;" << "pcr;" << std::endl;
 
 	int** matrix1 = new int*[N];
 	int** matrix2 = new int*[N];
@@ -417,144 +498,168 @@ void Multiplication::calculate2DArray()
 	timer = clock() - timer;
 	std::cout << "Solo cpu RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo2DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo2DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo2DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo2DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcSolo2DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "Solo cpu PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut2DArrayRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut2DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut2DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut2DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut2DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpOut2DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP OUT PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid2DArrayRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid2DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid2DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid2DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid2DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpMid2DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP MID PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn2DArrayRCV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN RCP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn2DArrayRVC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN RPC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn2DArrayCRV(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN CRP: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn2DArrayCVR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN CPR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn2DArrayVRC(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN PRC: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";";
+	clearMatrix(matrix3);
 
 	timer = clock();
 	calcOmpIn2DArrayVCR(matrix1, matrix2, matrix3);
 	timer = clock() - timer;
 	std::cout << "OMP IN PCR: " << static_cast<float>(timer) / CLOCKS_PER_SEC << " second." << std::endl;
 	fs << static_cast<float>(timer) / CLOCKS_PER_SEC << ";" << std::endl;
+	clearMatrix(matrix3);
 
 	fs.close();
 	for (size_t row = N; row > 0;)
@@ -572,7 +677,7 @@ void Multiplication::calculate2DArray()
 
 #pragma region print section
 
-void Multiplication::printMat2DArray(int mat[N][N])
+void Multiplication::printMat(int mat[N][N])
 {
 	for (int row = 0; row < N; row++)
 	{
@@ -585,7 +690,7 @@ void Multiplication::printMat2DArray(int mat[N][N])
 	}
 }
 
-void Multiplication::printMat1DArray(int* mat)
+void Multiplication::printMat(int* mat)
 {
 	for (int row = 0; row < N; row++)
 	{
@@ -598,21 +703,7 @@ void Multiplication::printMat1DArray(int* mat)
 	}
 }
 
-void Multiplication::printMat1DArrayT(int* mat)
-{
-	for (int row = 0; row < N; row++)
-	{
-		std::cout << "| ";
-		for (int col = row; col < N * N;)
-		{
-			std::cout << mat[col] << " ";
-			col += N;
-		}
-		std::cout << " |" << std::endl;
-	}
-}
-
-void Multiplication::printMatVector(std::vector<std::vector<int>>& mat)
+void Multiplication::printMat(std::vector<std::vector<int>>& mat)
 {
 	for (int row = 0; row < N; row++)
 	{

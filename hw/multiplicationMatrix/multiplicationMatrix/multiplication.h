@@ -5,7 +5,7 @@
 #include <iostream>
 #include <omp.h>
 
-#define N 1500
+#define N 3
 
 class Multiplication
 {
@@ -14,10 +14,14 @@ private:
 	void generateMatrixVector(std::vector < std::vector < int > > &mat);
 	void generateMatrix1DArray(int *mat);
 
-	void printMat2DArray(int mat[N][N]);
-	void printMat1DArray(int *mat);
-	void printMat1DArrayT(int *mat);
-	void printMatVector(std::vector < std::vector < int > > &mat);
+	void clearMatrix(int *mat[N]);
+	void clearMatrix(std::vector < std::vector < int > > &mat);
+	void clearMatrix(int *mat);
+
+
+	void printMat(int mat[N][N]);
+	void printMat(int *mat);
+	void printMat(std::vector < std::vector < int > > &mat);
 
 	void calcSolo2DArrayRCV(int * mat1[N], int * mat2[N], int * mat3[N]);
 	void calcSolo2DArrayRVC(int * mat1[N], int * mat2[N], int * mat3[N]);
