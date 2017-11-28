@@ -1,22 +1,48 @@
 \documentclass[11pt,landscape]{article}
-\usepackage[a4paper,margin=1.5cm]{geometry}
 \usepackage[table]{xcolor}
 \usepackage[utf8]{inputenc}
-\usepackage{multirow}
+\usepackage{multirow,multicol}
 \usepackage{array}
 \usepackage{float}
-%\setlength{\arrayrulewidth}{1mm}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ bottom=2mm,
+ top=10mm,
+ }
+\setlength{\arrayrulewidth}{0.5mm}
 %\setlength{\tabcolsep}{18pt}
 %\renewcommand{\arraystretch}{1}
 
 \begin{document}
 \pagestyle{empty}
 \begin{center}
-\section*{\huge{Test result}}
-\section*{Multiplication matrices}
+\textbf{\huge{Parallel multiplication matrices}} \Large{(sev0099)} \\
+\LARGE{CPU i5-4200U DC 1.6 GHz - 2.G GHz 4 Threads $|$ RAM DDR3 8GB 1600 MHz}
 \end{center}
 
+\begin{table}[H]
+\centering
+\include{includes/table2ntb}
+\end{table}
+\begin{table}[H]
+\centering
 \include{includes/table1ntb}
+\end{table}
+
+\begin{center}
+\textbf{\huge{Parallel multiplication matrices}} \Large{(sev0099)} \\
+\LARGE{CPU i7-6700K QC 4.0 GHz 8 Threads $|$ RAM DDR4 32GB 2900 MHz}
+\end{center}
+
+\begin{table}[H]
+\centering
+\include{includes/table2pc}
+\end{table}
+\begin{table}[H]
+\centering
+\include{includes/table1pc}
+\end{table}
 
 
 \end{document}

@@ -1,0 +1,29 @@
+%  500 NTB
+\begin{tabular}{ |c|c|c|c|c|c|c|c|  }
+\hline 
+\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{6}{c|}{ Time [sec] } \\  \cline{3-8}
+
+                          & & row\_col\_pos & row\_pos\_col & col\_row\_pos & col\_pos\_row  & pos\_row\_col & pos\_col\_row \\
+\hline 
+\multirow{4}{*}{1D Array}   & Solo CPU      & 0.188 &0.102 &0.12 &0.439 &0.096 &0.429 \\
+                            & OMP outer for & 0.09 &0.058 &0.083 &0.231 &0.056 &0.255 \\
+                            & OMP mid for   & 0.087 &0.085 &0.069 &0.418 &0.064 &0.211 \\
+                            & OMP inner for & 0.41 &0.395 &0.368 &0.429 &0.449 &0.448 \\
+
+\hline 
+\multirow{4}{*}{2D Array}  
+                            & Solo CPU      & 0.88  & 0.189 &0.323 &0.468 &0.22 &0.424 \\
+                            & OMP outer for & 0.178 & 0.128 &0.191 &0.83 &0.123 &0.781 \\
+                            & OMP mid for   & 0.201 & 0.14 &0.186 &0.887 &0.106 &0.83 \\
+                            & OMP inner for & 0.556 & 0.447 &0.585 &0.572 &0.45 &0.562 \\
+
+\hline 
+\multirow{4}{*}{Vector}     
+                            & Solo CPU      & 0.43 &0.318 &0.41 &0.512 &0.31 &0.547 \\                           
+                            & OMP outer for & 0.24 &0.172 &0.26 &0.843 &0.187 &0.767 \\
+                            & OMP mid for   & 0.275 &0.213 &0.251 &0.842 &0.171 &0.828 \\
+                            & OMP inner for & 0.806 &0.489 &0.801 &0.699 &0.479 &0.787 \\  
+\hline
+\end{tabular}
+\caption{ Dimension 500 }
+\label{table2ntb}

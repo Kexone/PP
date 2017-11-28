@@ -1,0 +1,28 @@
+%  1500 NTB
+\begin{tabular}{ |c|c|c|c|c|c|c|c|  }
+\hline 
+\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{6}{c|}{ Time [sec] } \\  \cline{3-8}
+
+                          & & row\_col\_pos & row\_pos\_col & col\_row\_pos & col\_pos\_row  & pos\_row\_col & pos\_col\_row \\
+\hline 
+\multirow{4}{*}{1D Array}   & Solo CPU      & 32.289 &2.785 &32.21 &73.228 &2.992 &73.151 \\
+                            & OMP outer for & 17.742 &1.631 &17.83 &40.761 &1.902 &40.569 \\
+                            & OMP mid for   & 18.046 &2.212 &17.675 &40.539 &2.545 &40.816 \\
+                            & OMP inner for & 7.293 &5.009 &6.236 &42.783 &5.151 &42.653 \\
+
+\hline 
+\multirow{4}{*}{2D Array}   & Solo CPU      & 41.078 & 5.316 &36.336 &76.798 &5.471 &78.551 \\
+                            & OMP outer for & 20.54  &2.879  &20.44  &41.349 &2.972 &41.387 \\
+                            & OMP mid for   & 21.275 &3.495  &19.473 &41.446 &3.143 &43.421 \\
+                            & OMP inner for & 21.989 &8.083  &15.455 &41.779 &6.623 &41.861 \\
+
+\hline 
+\multirow{4}{*}{Vector}     
+                            & Solo CPU      & 37.692 &8.545 &36.586 &79.9 &8.627 &79.397 \\                           
+                            & OMP outer for & 20.911 &4.519 &20.3 &42.123 &4.555 &41.921 \\
+                            & OMP mid for   & 21.591 &5.296 &19.55 &42.007 &4.747 &42.432 \\
+                            & OMP inner for & 22.148 &8.12 &18.904 &42.546 &9.439 &51.125 \\  
+\hline
+\end{tabular}
+\caption{ Dimension 1500 }
+\label{table1ntb}
