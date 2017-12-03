@@ -1,0 +1,20 @@
+%  400 NTB
+\begin{tabular}{ |c|c|c|c|c|c|c|c|  }
+\hline 
+\multirow{2}{*}{Container}  & \multirow{2}{*}{Type} & \multicolumn{6}{c|}{ Time [sec] } \\  \cline{3-8}
+
+                          & & row\_col\_pos & row\_pos\_col & col\_row\_pos & col\_pos\_row  & pos\_row\_col & pos\_col\_row \\
+\multirow{2}{*}{1D Array}   & Solo CPU      & 0.716613 &0.484429 &0.530342 &0.688509 &0.475051 &0.736985 \\
+                            & MPI           & 0.002709 & 0.001366 & 0.001969 & 0.001143 & 0.002151 & 0.001441 \\
+\hline 
+ 
+
+\hline 
+\multirow{2}{*}{2D Array}   & Solo CPU      & 0.565488 &0.37243 &0.419771 &0.597658 &0.375641 &0.601577 \\
+                            & MPI           & 0.894569 & 0.882276 & 0.945247 & 0.90079 & 0.865794 & 0.948617 \\
+
+
+\hline
+\end{tabular}
+\caption{ Dimension 400 }
+\label{table1ntb}
